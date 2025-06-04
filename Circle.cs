@@ -17,11 +17,23 @@ namespace ShapeInheritance
             this.Diameter = diameter;
         }
 
-        public string Display()
+        public override string Display()
         {
             string data = "Circle " + "\n" + base.Display()+
                 "Diameter : " + this.Diameter + "\n";
             return data;
+        }
+
+        public override double CalculateArea()
+        {
+            double luas = Math.PI * (this.Diameter / 2.0) * (this.Diameter / 2.0);
+            return luas;
+        }
+
+        public override double CalculatePerimeter()
+        {
+            double kel = Math.PI * this.Diameter;
+            return kel;
         }
     }
 }

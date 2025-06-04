@@ -20,11 +20,26 @@ namespace ShapeInheritance
             this.Top = top;
         }
 
-        public string Display()
+        public virtual string Display()
         {
             string data = "Left : " + this.Left + "\n" +
                 "Top : " + this.Top + "\n";
             return data;
+        }
+
+        public virtual double CalculateArea()
+        {
+            return 0;
+        }
+
+        public virtual double CalculatePerimeter()
+        {
+            return 0;
+        }
+
+        public virtual double CalculateDiagonal()
+        {
+            return 0;
         }
     }
 }

@@ -49,6 +49,9 @@
             this.radioButtonCircle = new System.Windows.Forms.RadioButton();
             this.groupBoxRectangle = new System.Windows.Forms.GroupBox();
             this.groupBoxCircle = new System.Windows.Forms.GroupBox();
+            this.buttonLuas = new System.Windows.Forms.Button();
+            this.buttonKeliling = new System.Windows.Forms.Button();
+            this.buttonDiagonal = new System.Windows.Forms.Button();
             this.groupBoxShape.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownTop)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownLeft)).BeginInit();
@@ -93,7 +96,7 @@
             // listBoxInfo
             // 
             this.listBoxInfo.FormattingEnabled = true;
-            this.listBoxInfo.Location = new System.Drawing.Point(41, 275);
+            this.listBoxInfo.Location = new System.Drawing.Point(41, 301);
             this.listBoxInfo.Name = "listBoxInfo";
             this.listBoxInfo.Size = new System.Drawing.Size(348, 147);
             this.listBoxInfo.TabIndex = 17;
@@ -165,7 +168,7 @@
             // 
             // buttonExit
             // 
-            this.buttonExit.Location = new System.Drawing.Point(314, 428);
+            this.buttonExit.Location = new System.Drawing.Point(314, 454);
             this.buttonExit.Name = "buttonExit";
             this.buttonExit.Size = new System.Drawing.Size(75, 23);
             this.buttonExit.TabIndex = 18;
@@ -283,11 +286,44 @@
             this.groupBoxCircle.TabStop = false;
             this.groupBoxCircle.Text = "Circle Data";
             // 
+            // buttonLuas
+            // 
+            this.buttonLuas.Location = new System.Drawing.Point(66, 264);
+            this.buttonLuas.Name = "buttonLuas";
+            this.buttonLuas.Size = new System.Drawing.Size(75, 23);
+            this.buttonLuas.TabIndex = 19;
+            this.buttonLuas.Text = "Luas";
+            this.buttonLuas.UseVisualStyleBackColor = true;
+            this.buttonLuas.Click += new System.EventHandler(this.buttonLuas_Click);
+            // 
+            // buttonKeliling
+            // 
+            this.buttonKeliling.Location = new System.Drawing.Point(174, 264);
+            this.buttonKeliling.Name = "buttonKeliling";
+            this.buttonKeliling.Size = new System.Drawing.Size(75, 23);
+            this.buttonKeliling.TabIndex = 20;
+            this.buttonKeliling.Text = "Keliling";
+            this.buttonKeliling.UseVisualStyleBackColor = true;
+            this.buttonKeliling.Click += new System.EventHandler(this.buttonKeliling_Click);
+            // 
+            // buttonDiagonal
+            // 
+            this.buttonDiagonal.Location = new System.Drawing.Point(268, 264);
+            this.buttonDiagonal.Name = "buttonDiagonal";
+            this.buttonDiagonal.Size = new System.Drawing.Size(75, 23);
+            this.buttonDiagonal.TabIndex = 21;
+            this.buttonDiagonal.Text = "Diagonal";
+            this.buttonDiagonal.UseVisualStyleBackColor = true;
+            this.buttonDiagonal.Click += new System.EventHandler(this.buttonDiagonal_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(467, 489);
+            this.Controls.Add(this.buttonDiagonal);
+            this.Controls.Add(this.buttonKeliling);
+            this.Controls.Add(this.buttonLuas);
             this.Controls.Add(this.buttonClear);
             this.Controls.Add(this.buttonRemove);
             this.Controls.Add(this.radioButtonRectangle);
@@ -341,6 +377,9 @@
         private System.Windows.Forms.RadioButton radioButtonCircle;
         private System.Windows.Forms.GroupBox groupBoxRectangle;
         private System.Windows.Forms.GroupBox groupBoxCircle;
+        private System.Windows.Forms.Button buttonLuas;
+        private System.Windows.Forms.Button buttonKeliling;
+        private System.Windows.Forms.Button buttonDiagonal;
     }
 }
 

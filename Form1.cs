@@ -18,11 +18,12 @@ namespace ShapeInheritance
         {
             InitializeComponent();
         }
-        List<Circle> listCircle = new List<Circle>();
-        List<Rectangle> listRectangle = new List<Rectangle>();
+        //List<Circle> listCircle = new List<Circle>();
+        //List<Rectangle> listRectangle = new List<Rectangle>();
+        List<Shape> listShape = new List<Shape>();
 
-        Rectangle newReactangle;
-        Circle newCircle;
+        //Rectangle newReactangle;
+        //Circle newCircle;
         private void buttonExit_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -40,40 +41,23 @@ namespace ShapeInheritance
             groupBoxRectangle.Enabled = true;
         }
         #region saveload
-        string circleDefaultName = "circle.dat";
-        string rectangleDefaultName = "rectangle.dat";
+        string defaultName = "shape.dat";
 
-        public void SaveCircle(string fileName)
+        public void SaveShape(string fileName)
         {
             FileStream myFile = new FileStream(fileName, FileMode.Create, FileAccess.Write);
             BinaryFormatter formatter = new BinaryFormatter();
-            formatter.Serialize(myFile, listCircle);
+            formatter.Serialize(myFile, listShape);
             myFile.Close();
-        }
-        public void SaveRectangle(string fileName)
-        {
-            FileStream myFile = new FileStream(fileName, FileMode.Create, FileAccess.Write);
-            BinaryFormatter formatter = new BinaryFormatter();
-            formatter.Serialize(myFile, listRectangle);
-            myFile.Close();
-        }
-        public void OpenCircle(string fileName)
+        }  
+       
+        public void OpenShape(string fileName)
         {
             if (File.Exists(fileName))
             {
                 FileStream myFile = new FileStream(fileName, FileMode.Open, FileAccess.Read);
                 BinaryFormatter formatter = new BinaryFormatter();
-                listCircle = (List<Circle>)formatter.Deserialize(myFile);
-                myFile.Close();
-            }
-        }
-        public void OpenRectangle(string fileName)
-        {
-            if (File.Exists(fileName))
-            {
-                FileStream myFile = new FileStream(fileName, FileMode.Open, FileAccess.Read);
-                BinaryFormatter formatter = new BinaryFormatter();
-                listRectangle = (List<Rectangle>)formatter.Deserialize(myFile);
+                listShape = (List<Shape>)formatter.Deserialize(myFile);
                 myFile.Close();
             }
         }
@@ -97,23 +81,21 @@ namespace ShapeInheritance
                 if (radioButtonCircle.Checked)
                 {
                     int diameter = (int)numericUpDownDiameter.Value;
-                    newCircle = new Circle(left, top, diameter);
-
-                    listCircle.Add(newCircle);
+                    Shape newCircle = new Circle(left, top, diameter);
+                    listShape.Add(newCircle);                    
                     listBoxInfo.Items.AddRange(newCircle.Display().Split('\n'));
-
-                    SaveCircle(circleDefaultName);
+                    SaveShape(defaultName);
                 }
                 else if (radioButtonRectangle.Checked)
                 {
                     int width = (int)numericUpDownWidth.Value;
                     int height = (int)numericUpDownHeight.Value;
 
-                    newReactangle = new Rectangle(left, top, width, height);
-                    listRectangle.Add(newReactangle);
+                    Shape newReactangle = new Rectangle(left, top, width, height);
+                    listShape.Add(newReactangle);
+                    //listRectangle.Add(newReactangle);
                     listBoxInfo.Items.AddRange(newReactangle.Display().Split('\n'));
-
-                    SaveRectangle(rectangleDefaultName);
+                    SaveShape(defaultName);
                 }
                 reset();
             }
@@ -125,24 +107,21 @@ namespace ShapeInheritance
 
         private void buttonDisplayAll_Click(object sender, EventArgs e)
         {
-            foreach (Circle i in listCircle)
+           
+            foreach (Shape i in listShape)
             {
-                listBoxInfo.Items.AddRange(i.Display().Split('\n'));
-            }
-            foreach (Rectangle i in listRectangle)
-            {
-                listBoxInfo.Items.AddRange(i.Display().Split('\n'));
+               listBoxInfo.Items.AddRange(i.Display().Split('\n'));
             }
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            OpenCircle(circleDefaultName);
-            OpenRectangle(rectangleDefaultName);
+            OpenShape(defaultName);
         }
 
         private void buttonRemove_Click(object sender, EventArgs e)
         {
+            /*
             try
             {
                 int left = (int)numericUpDownLeft.Value;
@@ -151,15 +130,17 @@ namespace ShapeInheritance
                 if (radioButtonCircle.Checked)
                 {
                     int diamter = (int)numericUpDownDiameter.Value;
-                    for (int i = 0; i < listCircle.Count && (!found); i++)
+                    for (int i = 0; i < listShape.Count && (!found); i++)
                     {
-                        if(listCircle[i].Left == left && listCircle[i].Top == top && listCircle[i].Diameter == diamter)
+                        if (i is Circle)
                         {
-                            listCircle.RemoveAt(i);
-                            SaveCircle(circleDefaultName);
-                            found = true;
+                            if (listShape[i].Left == left && listShape[i].Top == top && listShape[i].Diameter == diamter)
+                            {
+                                listCircle.RemoveAt(i);
+                                SaveCircle(circleDefaultName);
+                                found = true;
+                            }
                         }
-
                     }
                     if (found == false)
                     {
@@ -190,6 +171,99 @@ namespace ShapeInheritance
             catch(Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+            */
+        }
+
+        private void buttonLuas_Click(object sender, EventArgs e)
+        {
+            /*
+            if (radioButtonCircle.Checked)
+            {
+                int diameter = (int)numericUpDownDiameter.Value;
+                Shape newCircle = new Circle(left, top, diameter);
+                listBoxInfo.Items.Add("Luas : " + newCircle.CalculateArea());
+                listBoxInfo.Items.Add("Keliling : " + newCircle.CalculatePerimeter());
+            }
+            else if (radioButtonRectangle.Checked)
+            {
+                int width = (int)numericUpDownWidth.Value;
+                int height = (int)numericUpDownHeight.Value;
+
+                Shape newReactangle = new Rectangle(left, top, width, height);
+                listBoxInfo.Items.Add("Luas : " + newReactangle.CalculateArea());
+                listBoxInfo.Items.Add("Keliling : " + newReactangle.CalculatePerimeter());
+                listBoxInfo.Items.Add("Diagonal : " + newReactangle.CalculateDiagonal());
+            }
+            */
+            listBoxInfo.Items.Clear();
+            if (radioButtonCircle.Checked)
+            {
+                foreach (Shape i in listShape)
+                {
+                    if (i is Circle)
+                    {
+                        listBoxInfo.Items.AddRange(i.Display().Split('\n'));
+                        listBoxInfo.Items.Add("Luas : " + i.CalculateArea());
+                        listBoxInfo.Items.Add("");
+                    }
+                }
+            }
+            else
+            {
+                foreach(Shape i in listShape)
+                {
+                    if (i is Rectangle)
+                    {
+                        listBoxInfo.Items.AddRange(i.Display().Split('\n'));
+                        listBoxInfo.Items.Add("Luas : " + i.CalculateArea());
+                        listBoxInfo.Items.Add("");
+                    }
+                }
+            }
+
+        }
+
+        private void buttonKeliling_Click(object sender, EventArgs e)
+        {
+            listBoxInfo.Items.Clear();
+            if (radioButtonCircle.Checked)
+            {
+                foreach (Shape i in listShape)
+                {
+                    if (i is Circle)
+                    {
+                        listBoxInfo.Items.AddRange(i.Display().Split('\n'));
+                        listBoxInfo.Items.Add("Luas : " + i.CalculatePerimeter());
+                        listBoxInfo.Items.Add("");
+                    }
+                }
+            }
+            else
+            {
+                foreach (Shape i in listShape)
+                {
+                    if (i is Rectangle)
+                    {
+                        listBoxInfo.Items.AddRange(i.Display().Split('\n'));
+                        listBoxInfo.Items.Add("Luas : " + i.CalculatePerimeter());
+                        listBoxInfo.Items.Add("");
+                    }
+                }
+            }
+        }
+
+        private void buttonDiagonal_Click(object sender, EventArgs e)
+        {
+            listBoxInfo.Items.Clear();
+            foreach (Shape i in listShape)
+            {
+                if (i is Rectangle)
+                {
+                    listBoxInfo.Items.AddRange(i.Display().Split('\n'));
+                    listBoxInfo.Items.Add("Luas : " + i.CalculateDiagonal());
+                    listBoxInfo.Items.Add("");
+                }
             }
         }
     }

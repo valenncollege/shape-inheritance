@@ -20,12 +20,29 @@ namespace ShapeInheritance
             this.Height = height;
         }
 
-        public string Display()
+        public override string Display()
         {
             string data = "Rectangle : " + "\n" + base.Display() +
                 "Width : " + this.Width + "\n" +
                 "Height : " + this.Height + "\n";
             return data;
+        }
+
+        public override double CalculateArea()
+        {
+            return this.Height * this.Width;
+        }
+
+        public override double CalculatePerimeter()
+        {
+            double kel = 2 * (this.Height) + 2 * (this.Width);
+            return kel;
+        }
+
+        public override double CalculateDiagonal()
+        {
+            double diag = Math.Sqrt((this.Width * this.Width) + (this.Height * this.Height));
+            return diag;
         }
     }
 }

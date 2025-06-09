@@ -121,6 +121,7 @@ namespace ShapeInheritance
 
         private void buttonRemove_Click(object sender, EventArgs e)
         {
+            #region oldremove
             /*
             try
             {
@@ -173,6 +174,57 @@ namespace ShapeInheritance
                 MessageBox.Show(ex.Message);
             }
             */
+            #endregion
+            int left = (int)numericUpDownLeft.Value;
+            int top = (int)numericUpDownTop.Value;
+            bool found = false;
+            if (radioButtonCircle.Checked)
+            {
+                int diameter = (int)numericUpDownDiameter.Value;
+                Circle newCir = new Circle(left, top, diameter);
+                for (int i = 0; i < listShape.Count; i++)
+                {
+                    if (listShape[i].IsEquel(newCir))
+                    {
+                        listShape.RemoveAt(i);
+                        SaveShape(defaultName);
+                        found = true;
+                        
+                    }
+                }
+                if (found == false)
+                {
+                    MessageBox.Show("Circle not found");
+                }
+                else
+                {
+                    MessageBox.Show("Circle deleted");
+                }
+            }
+            else
+            {
+                int height = (int)numericUpDownHeight.Value;
+                int width = (int)numericUpDownWidth.Value;
+                Rectangle newRec = new Rectangle(left, top, width, height);
+                for(int i = 0; i < listShape.Count; i++)
+                {
+                    if (listShape[i].IsEquel(newRec))
+                    {
+                        listShape.RemoveAt(i);
+                        SaveShape(defaultName);
+                        found = true;
+                    }
+
+                }
+                if (found == false)
+                {
+                    MessageBox.Show("Rectangle not found");
+                }
+                else
+                {
+                    MessageBox.Show("Rectangle deleted");
+                }
+            }
         }
 
         private void buttonLuas_Click(object sender, EventArgs e)
@@ -203,8 +255,9 @@ namespace ShapeInheritance
                 {
                     if (i is Circle)
                     {
+                        Circle newCir = (Circle)i;
                         listBoxInfo.Items.AddRange(i.Display().Split('\n'));
-                        listBoxInfo.Items.Add("Luas : " + i.CalculateArea());
+                        listBoxInfo.Items.Add("Luas : " + newCir.CalculateArea());
                         listBoxInfo.Items.Add("");
                     }
                 }
@@ -215,8 +268,9 @@ namespace ShapeInheritance
                 {
                     if (i is Rectangle)
                     {
+                        Rectangle newRec = (Rectangle)i;
                         listBoxInfo.Items.AddRange(i.Display().Split('\n'));
-                        listBoxInfo.Items.Add("Luas : " + i.CalculateArea());
+                        listBoxInfo.Items.Add("Luas : " + newRec.CalculateArea());
                         listBoxInfo.Items.Add("");
                     }
                 }
@@ -233,8 +287,9 @@ namespace ShapeInheritance
                 {
                     if (i is Circle)
                     {
+                        Circle newCir = (Circle)i;
                         listBoxInfo.Items.AddRange(i.Display().Split('\n'));
-                        listBoxInfo.Items.Add("Luas : " + i.CalculatePerimeter());
+                        listBoxInfo.Items.Add("Luas : " + newCir.CalculatePerimeter());
                         listBoxInfo.Items.Add("");
                     }
                 }
@@ -245,8 +300,9 @@ namespace ShapeInheritance
                 {
                     if (i is Rectangle)
                     {
+                        Rectangle newRec = (Rectangle)i;
                         listBoxInfo.Items.AddRange(i.Display().Split('\n'));
-                        listBoxInfo.Items.Add("Luas : " + i.CalculatePerimeter());
+                        listBoxInfo.Items.Add("Luas : " + newRec.CalculatePerimeter());
                         listBoxInfo.Items.Add("");
                     }
                 }
@@ -260,8 +316,9 @@ namespace ShapeInheritance
             {
                 if (i is Rectangle)
                 {
+                    Rectangle newRec = (Rectangle)i;
                     listBoxInfo.Items.AddRange(i.Display().Split('\n'));
-                    listBoxInfo.Items.Add("Luas : " + i.CalculateDiagonal());
+                    listBoxInfo.Items.Add("Luas : " + newRec.CalculateDiagonal());
                     listBoxInfo.Items.Add("");
                 }
             }

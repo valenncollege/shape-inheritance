@@ -44,5 +44,17 @@ namespace ShapeInheritance
             double diag = Math.Sqrt((this.Width * this.Width) + (this.Height * this.Height));
             return diag;
         }
+        public override bool IsEquel(Shape obj)
+        {
+            if (obj is Rectangle)
+            {
+                if (this.Height == (obj as Rectangle).Height && this.Width == (obj as Rectangle).Width 
+                    && base.IsEquel(obj))
+                    return true;
+                else
+                    return false;
+            }
+            return false;
+        }
     }
 }

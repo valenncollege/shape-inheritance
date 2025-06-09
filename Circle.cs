@@ -35,5 +35,21 @@ namespace ShapeInheritance
             double kel = Math.PI * this.Diameter;
             return kel;
         }
+        public override double CalculateDiagonal()
+        {
+            return 0.0;
+        }
+
+        public override bool IsEquel(Shape obj)
+        {
+            if (obj is Circle)
+            {
+                if (this.Diameter == (obj as Circle).Diameter && base.IsEquel(obj))
+                    return true;
+                else
+                    return false;
+            }
+            return false;
+        }
     }
 }

@@ -6,7 +6,7 @@ using System.Text;
 namespace ShapeInheritance
 {
     [Serializable]
-    public class Shape
+    public abstract class Shape
     {
         private int left;
         private int top;
@@ -27,19 +27,18 @@ namespace ShapeInheritance
             return data;
         }
 
-        public virtual double CalculateArea()
-        {
-            return 0;
-        }
+        public abstract double CalculateArea();
 
-        public virtual double CalculatePerimeter()
-        {
-            return 0;
-        }
+        public abstract double CalculatePerimeter();
 
-        public virtual double CalculateDiagonal()
+        public abstract double CalculateDiagonal();
+
+        public virtual bool IsEquel(Shape obj)
         {
-            return 0;
+            if (this.Left == (obj as Shape).Left && this.Top == (obj as Shape).Top)
+                return true;
+            else
+                return false;
         }
     }
 }
